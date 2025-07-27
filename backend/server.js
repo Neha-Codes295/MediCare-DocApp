@@ -20,12 +20,19 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true // set to true only if you use cookies/auth headers
+  origin: function(origin, callback) {
+    // allow requests with no origin (like Postman, curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // only if you use cookies/auth headers
 }));
 
-// middlewares
-app.use(express.json())
+app.use(express.json());
 
 // api endpoints
 app.use("/api/user", userRouter)
