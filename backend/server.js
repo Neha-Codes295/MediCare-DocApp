@@ -13,9 +13,19 @@ const port = process.env.PORT || 4000
 connectDB()
 connectCloudinary()
 
+// CORS setup: allow only your deployed frontend and admin panel
+const allowedOrigins = [
+  'https://medicare-docapp-fe.onrender.com',
+  'https://medicare-docapp-ad.onrender.com'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true // set to true only if you use cookies/auth headers
+}));
+
 // middlewares
 app.use(express.json())
-app.use(cors())
 
 // api endpoints
 app.use("/api/user", userRouter)
@@ -26,6 +36,6 @@ app.get("/", (req, res) => {
   res.send("API Working")
 });
 
-app.listen(port, () => console.log(`Server started on PORT:${port}`))
+app.listen(port, () => console.log('Server started on PORT:${port}'))
 console.log("ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
 console.log("ADMIN_PASSWORD:", process.env.ADMIN_PASSWORD);
