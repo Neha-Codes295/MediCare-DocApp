@@ -2,7 +2,7 @@
 
 Patientoo is a comprehensive, full-stack healthcare management application designed to streamline the process of booking and managing doctor's appointments. It features separate interfaces for patients and administrators, built with modern web technologies including the MERN stack (MongoDB, Express.js, React, Node.js), Vite, and Tailwind CSS.
 
-##Live Link : https://patientoo-heathcare-management-app-0eqb.onrender.com/
+Live Link : https://patientoo-heathcare-management-app-0eqb.onrender.com/
 
 ## Features
 
